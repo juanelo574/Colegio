@@ -21,7 +21,7 @@ class AlumnoController extends Controller
      */
     public function create()
     {
-        //
+        return view('Alumnos.create');
     }
 
     /**
@@ -29,7 +29,17 @@ class AlumnoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+         'codigo_alumno' => 'required|unique:alumnos',
+        'nombre' => 'required',
+        'apellido' => 'required',
+        'fecha_nacimiento' => 'required|date',
+        'genero' => 'required',
+        'email' => 'required|email|unique:alumnos',
+        'telefono' => 'required',
+        'direccion' => 'required',
+        'fecha_inscripcion' => 'required|date'
+        ]);
     }
 
     /**

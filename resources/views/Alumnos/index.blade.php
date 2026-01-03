@@ -10,7 +10,7 @@
 
 <body class="container mt-4">
     <h1 class="mb-4"> Lista de Alumnos</h1>
-    
+    <button class="btn btn-primary mb-3" onclick="window.location='{{ route("alumnos.create") }}'">Crear Nuevo Alumno</button>
     <table class="table table-striped">
         <thead>
             <tr>
