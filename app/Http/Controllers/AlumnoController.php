@@ -62,7 +62,8 @@ class AlumnoController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $alumnos = Alumno::findOrFail($id);
+        return view('Alumnos.show', compact('alumnos'));
     }
 
     /**
@@ -70,7 +71,8 @@ class AlumnoController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $alumnos = Alumno::findOrFail($id);
+        return view('Alumnos.edit', compact('alumnos'));
     }
 
     /**
@@ -78,7 +80,34 @@ class AlumnoController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $alumnos = Alumno::findOrFail($id);
+
+        $request->validate([
+            'codigo_alumno' => 'required|unique:alumnos,codigo_alumno,'.$alumnos->id,
+            'nombre' => 'required',
+            'apellido' => 'required',
+            'fecha_nacimiento' => 'required|date',
+            'genero' => 'required',
+            'email' => 'required|email|unique:alumnos,email,'.$alumnos->id,
+            'telefono' => 'required',
+            'direccion' => 'required',
+            'fecha_inscripcion' => 'required|date',
+            'activo' => 'required|boolean'
+        ]);
+        $alumnos->update([
+            'codigo_alumno' => $request->codigo_alumno,
+            'nombre' => $request->nombre,
+            'apellido' => $request->apellido,
+            'fecha_nacimiento' => $request->fecha_nacimiento,
+            'genero' => $request->genero,
+            'email' => $request->email,
+            'telefono' => $request->telefono,
+            'direccion' => $request->direccion,
+            'fecha_inscripcion' => $request->fecha_inscripcion,
+            'activo' => $request->activo
+        ]);
+        return redirect()->route('alumnos.index')
+        ->with('success', 'Alumno actualizado exitosamente.');
     }
 
     /**
