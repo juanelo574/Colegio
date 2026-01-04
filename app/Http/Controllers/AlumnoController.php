@@ -40,6 +40,21 @@ class AlumnoController extends Controller
         'direccion' => 'required',
         'fecha_inscripcion' => 'required|date'
         ]);
+
+        Alumno::create([
+            'codigo_alumno' => $request->codigo_alumno,
+            'nombre' => $request->nombre,
+            'apellido' => $request->apellido,
+            'fecha_nacimiento' => $request->fecha_nacimiento,
+            'genero' => $request->genero,
+            'email' => $request->email,
+            'telefono' => $request->telefono,
+            'direccion' => $request->direccion,
+            'fecha_inscripcion' => $request->fecha_inscripcion,
+            'activo' => true
+        ]);
+        return redirect()->route('alumnos.create')
+        ->with('success', 'Alumno creado exitosamente.');
     }
 
     /**

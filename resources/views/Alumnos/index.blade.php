@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,8 +10,11 @@
 </head>
 
 <body class="container mt-4">
-    <h1 class="mb-4"> Lista de Alumnos</h1>
-    <button class="btn btn-primary mb-3" onclick="window.location='{{ route("alumnos.create") }}'">Crear Nuevo Alumno</button>
+    <div class="d-flex justify-content-center align-items-center">
+        <h1 class="mb-4" > Lista de Alumnos</h1>
+    </div>
+    <button class="btn btn-outline-primary mb-3" onclick="window.location='{{ route('alumnos.create') }}'">Crear Nuevo
+        Alumno</button>
     <table class="table table-striped">
         <thead>
             <tr>
@@ -27,29 +31,30 @@
             </tr>
         </thead>
         <tbody>
-            
-            @if($alumnos->isEmpty())
+
+            @if ($alumnos->isEmpty())
                 <tr>
                     <td colspan="10" class="text-center">No hay alumnos registrados.</td>
                 </tr>
             @else
-                @foreach($alumnos as $alumno)
-                <tr>
-                    <td>{{ $alumno->codigo_alumno }}</td>
-                    <td>{{ $alumno->nombre }}</td>
-                    <td>{{ $alumno->apellido }}</td>
-                    <td>{{ $alumno->fecha_nacimiento }}</td>
-                    <td>{{ $alumno->genero }}</td>
-                    <td>{{ $alumno->email }}</td>
-                    <td>{{ $alumno->telefono }}</td>
-                    <td>{{ $alumno->direccion }}</td>
-                    <td>{{ $alumno->fecha_inscripcion }}</td>
-                    <td>{{ $alumno->activo ? 'Sí' : 'No' }}</td>
-                </tr>
+                @foreach ($alumnos as $alumno)
+                    <tr>
+                        <td>{{ $alumno->codigo_alumno }}</td>
+                        <td>{{ $alumno->nombre }}</td>
+                        <td>{{ $alumno->apellido }}</td>
+                        <td>{{ $alumno->fecha_nacimiento }}</td>
+                        <td>{{ $alumno->genero }}</td>
+                        <td>{{ $alumno->email }}</td>
+                        <td>{{ $alumno->telefono }}</td>
+                        <td>{{ $alumno->direccion }}</td>
+                        <td>{{ $alumno->fecha_inscripcion }}</td>
+                        <td>{{ $alumno->activo ? 'Sí' : 'No' }}</td>
+                    </tr>
                 @endforeach
             @endif
-            
+
         </tbody>
     </table>
 </body>
+
 </html>
